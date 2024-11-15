@@ -17,7 +17,6 @@ class Window:
         self.text_frame = tk.Frame(self.__frame, width=width, height = height * .05)
         self.text_frame.pack(fill="both", expand=True)
         self.board.play_box(self.canvas)
-        self.canvas.tag_raise("above", "grid")
     
     def draw_line(self, line, fill_color):
         line.draw(self.canvas, fill_color)
@@ -44,7 +43,7 @@ class Circle:
         self.p2 = p2
 
     def draw(self, canvas, outline_color="black", width=10):
-        canvas.create_oval(self.p1.x, self.p1.y, self.p2.x, self.p2.y, outline=outline_color, width=width, tags="above")
+        canvas.create_oval(self.p1.x, self.p1.y, self.p2.x, self.p2.y, outline=outline_color, width=width)
 
 class Board:
     def __init__(self, width, height):
@@ -93,4 +92,4 @@ class Board:
         for i in range(len(self.board_state)):
             if self.board_state[i] == 0:
                 self.frames.append(tk.Frame(canvas, bg="white", height=self.height/4, width=self.width/4))
-                canvas.create_window(self.positions[i].x, self.positions[i].y, window=self.frames[i], tags="grid")
+                canvas.create_window(self.positions[i].x, self.positions[i].y, window=self.frames[i])
